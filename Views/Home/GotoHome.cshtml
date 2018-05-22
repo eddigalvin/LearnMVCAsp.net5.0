@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null; 
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/angular-route.js"></script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyomePage</title>
+    
+
+</head>
+
+<body ng-app="myApp">
+    
+    <div>SIMPLE CUSTOMER APP USING MVC</div>
+    
+    <div> 
+        @{ <a href="#/Enter">ENTER cUSTOMER...</a>}<br /><br />
+        @{ <a href="#/Search">ENTER sEARCH...</a>}<br />
+     </div>
+    
+    <script src="~/Scripts/CustomerViewModelAngular.js"></script>
+   <script language="javascript">
+       //app
+       var app = angular.module("myApp",  ['ngRoute']);  //creating app and INJECTING ngRoute ???!!!???
+    //controller
+    app.controller('CustomerViewModel', CustomerViewModel);   //registering the V iew  M odel object in the controller
+
+    app.config(['$routeProvider',
+        function ($routeProvider) {
+
+            $routeProvider.
+            when('/Enter', {
+                templateUrl: 'CustomerUI/EnterCustomer',
+                controller: 'CustomerViewModel'
+            }).
+            when('/Search', {
+                templateUrl: 'CustomerUI/SearchCustomer',
+                controller: 'CustomerViewModel'
+            }).
+            otherwise({
+                redirectTo: '/'
+            });
+        }]);
+    </script>     
+    
+    
+    <div>
+              @{var DT = ViewBag.CurrentDateTime;}
+        <p>@DT</p>
+    </div>
+    <div ng-view></div>
+</body>
+</html>

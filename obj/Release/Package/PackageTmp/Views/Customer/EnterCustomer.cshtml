@@ -1,0 +1,90 @@
+﻿@model MVCHelloWorld2.ViewModel.CustomerViewModel
+@using MVCHelloWorld2.Models;
+@{
+    Layout = null;
+}
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EnterCustomer</title>
+</head>
+
+
+<body>
+    <div>
+      @*  <form action="Submit" method="post"> *@
+     @*    @using (Html.BeginForm("Submit","Customer",FormMethod.Post))
+        {  //  comment out FormMethod.Post and replace with <form> tag  LAB13  using AJAX for reduce server data volume postback
+        *@
+        <form id="frm1">  @*This is LAB 13 AJAX inserted here*@
+            <i>Customer Code</i> @* <input name ="CustomerCode" type="text" value = "@Model.CustomerCode" />*@
+            @Html.TextBoxFor(m => m.customer.CustomerCode) <br>
+            @Html.ValidationMessageFor(x => x.customer.CustomerCode) <br>
+            <i> Customer Name</i> @* <input name ="CustomerName" type="text" value = "@Model.CustomerName" />*@
+            @Html.TextBoxFor(m => m.customer.CustomerName) <br>
+            @Html.ValidationMessageFor(x => x.customer.CustomerName) <br>
+        </form>
+            @* Customer Amount: <input id="CustomerAmount" type="text" /> <br />*@
+            @*   <input id="Submit1" type="submit" value="submit" />    //USE button BUTTON INSTD OF submit BUTTON COZ SUBMIT RETURNS ALL PAGE
+            // ie comment out line above submit button makes full htmlpage postback instead of update and replace with below *@
+            <input id="Btn" type="button" value="Add Customer" onclick="SendData()" />
+            @* see defn of SendData fn below *@
+            @* </form> *@
+        
+       
+        <br/>
+        @*create a html table to return to client for client side processing using ajax lab 13 *@
+        <div id="Status"></div>
+        <table id= "tbl" >
+        <tr>
+            <td>Customer Code</td>
+            <td>Customer Name</td>
+            </tr>    
+        </table>
+        
+        <script language="javascript">
+            $("#Status").text("Loading..................");
+            $.get("GetCustomers", null, BindData);// $.get invokes "GetCustomers" Actn Rslt....which returns JSON collctn
+            function BindData(Customerssss) //function BindData populates/creates html table with "Customersssss" 
+                //(CustomerViewModel is inclded at top)?? json collection ()javascript variable "Customerssss" ??.........
+                //note 'BindData' is referred to as the callback fn, while 'null' is the value
+                //given to the 2nd param whch reps data you can pass in the jquery $.get() call. first param is url or controller actn rslt
+                // you want to invoke.................exprmnt with returning data or webage????
+            //REF for this is $.http(method:"GET", function(data,headr,status,config){}etc.....) fro Angular1MVC project
+            {
+                var tbl = $("#tbl"); //got reference of the table (syntax to create a javascript variable from html element id ??)
+                // for loop
+                for (var j = 0; j < Customerssss.length; j++)
+                {
+                    var newRow = "<tr>" + "<td>" + Customerssss[j].CustomerCode + "</td>"
+                + "<td>" + Customerssss[j].CustomerName + "</td>" + "</tr>"; //unusual syntax is jscript or jquery ??//CREATE NEW ROW
+                    tbl.append(newRow);//Append new row..............to table..........
+                }
+                $("#Status").text("");
+            }
+                
+                function SendData()
+                {
+                    //post form data from client to MVC ctrlr
+                    $("#Status").text("Adding please wait................");
+                    var frm = $("#frm1").serialize();//3 steps,, 1) reference <form> element/data using id above ie."frm1" 2) serialize it
+                    $.post("Submit", frm, BindData); //3) post this form(data to server Submit ActionResult in the controller...
+                    $("#customer_CustomerName").val("");    //clear txtbox after submit/add Customer operation
+                    $("#customer_CustomerCode").val("");    //clear txtbox after submit/add Customer operation
+                }
+            
+        </script>
+
+       @*//comment out next line for partial display lesson 12 now doing ajax 
+        @Html.Partial("DisplayCustomer", Model)  *@
+
+      @*  @Html.ValidationSummary() *@
+    </div>
+</body>
+</html>

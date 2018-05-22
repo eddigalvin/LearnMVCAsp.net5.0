@@ -1,0 +1,77 @@
+﻿     @*@model MVCHelloWorld2.ViewModel.CustomerViewModel   ..........  REMOVED THIS LINE IN LAB30 ANGLR SPA  its not being referenced in this project!!!!!
+         ....................tink refs were created in lab27...organize MVC prj and CORS *@
+
+
+
+ 
+
+
+   
+    <div>
+       @* <div ng-controller="CustomerViewModel">  REMOVED THIS LINE IN LAB 30 SPA IN ANGLR AS CONTROLLER CUSTOMERVIEWMODEL IS REGD IN GOTOHOME.CSHTML *@
+            @*  <form action="Submit" method="post"> *@
+            @*    @using (Html.BeginForm("Submit","Customer",FormMethod.Post))
+                {  //  comment out FormMethod.Post and replace with <form> tag  LAB13  using AJAX for reduce server data volume postback
+            *@
+            <form id="frm1" name="frm1">@*NOTE LAB 25!! ALL HTML5 VALIDATIONS HAPPEN ON FORM!!...angular expects name so add name='frm1'*@
+                @*This is LAB 13 AJAX inserted here*@
+                <i>Customer Code</i> @* <input name ="CustomerCode" type="text" value = "@Model.CustomerCode" />*@ 
+                              @* @Html.TextBoxFor(m => m.customer.CustomerCode)------removed lab25*@<br>
+                @*This is LAB 25 ANGULAR VALIDATION(CLIENT SIDE VLDTN) USES HTML5 VALIDATION.........IE required KW span tag etc... *@
+                <input required id="CustomerCode" type="text" ng-model="Customer.CustomerCode" name="CustomerCode" /><br>
+                @*@Html.TextBoxFor(m => m.customer.CustomerCode) THIS IS FROM LAB 8*@
+                @*      @Html.ValidationMessageFor(x => x.customer.CustomerName) ------removed lab25*  *@
+                <span ng-show="!frm1.CustomerCode.$valid">Customer Code is required</span><br />
+    <i> Customer Name</i> @* <input name ="CustomerName" type="text" value = "@Model.CustomerName" />*@
+                @*@Html.TextBoxFor(m => m.customer.CustomerName) THIS IS FROM LAB 8*@ <br>   
+                
+                <input required id="CustomerName" type="text" ng-model="Customer.CustomerName" name="CustomerName" /><br>
+          @*      @Html.ValidationMessageFor(x => x.customer.CustomerName) ------removed lab25*  *@
+                <span ng-show="!frm1.CustomerName.$valid">Customer Name is required</span><br>
+    <i>Customer Amount</i>
+    <input id="CustomerAmount" type="text" ng-model="Customer.CustomerAmount" name="customer.CustomerAmount" /> @*NOTE IN LAB 18 VID Customer appears in RED!!!!!*@
+            </form>
+                @* Customer Amount: <input id="CustomerAmount" type="text" /> <br />*@
+                @*   <input id="Submit1" type="submit" value="submit" />    //USE button BUTTON INSTD OF submit BUTTON COZ SUBMIT RETURNS ALL PAGE
+            // ie comment out line above submit button makes full htmlpage postback instead of update and replace with below *@
+                <input id="Btn" ng-disabled="!frm1.$valid" @*LAB25 IE IF FORM INPUT FIELDS ARE EMPTY(REQUIRED)
+                                                               'ADD cUSTOMER' BTTN IS DISABLED*@type="button" 
+                       value="Add Customer" @*onclick="SendData()"*@ ng-click="Add()" />
+                <input id="Btn" type="button" value="Update Customer" @*onclick="SendData()"*@ ng-click="Update()" />
+                <input id="Btn" type="button" value="Delete Customer" @*onclick="SendData()"*@ ng-click="Delete()" />
+                @* see defn of SendData fn below *@
+                @* </form>*@
+                @*</div>..................LAB 18 Move div tag down below closing table tag so that is part of "CustomerViewModel"  Angular Controller...*@
+            
+                <br />
+                          <ul>  <li id="errorMessages" @*class="Errors"*@ @*data-*@ng-repeat="error in Errors">@*"Errors"is $scope.Errors*@  
+                    {{error}}  
+                </li>  </ul>    <br />
+
+        @*create a html table to return to client for client side processing using ajax lab 13 *@
+        <div id="Status"></div>
+        <table id="tbl">
+            <tr>
+                <td>Customer Code</td>
+                <td>Customer Name</td>
+                <td>Customer Amount</td>
+            </tr>
+            <tr ng-repeat="cust in Customers">
+                <td>{{cust.CustomerCode}}</td>
+                <td>{{cust.CustomerName}}</td>
+                <td style="background-color: {{cust.CustomerAmountColor}}">
+                {{cust.CustomerAmount}}</td> 
+            <td><a ng-click= "LoadByCode(cust.CustomerCode)" href="#/Enter">Select</a></td>          
+            </tr>                                    @* NOTE HAD TO CHANGE CUSTOMER TO CUST IN STYLE CMD TOGET COLORCODE TO WORK!!!!!
+                                                         NEED TO INVESTIGATE.....------- SEE STYLE COMMAND FOR CustomerAmount
+                  ???????????????????????????????????????????????????????????????????????????????????????
+                                                         ??????????????????????????????????????????????????????????????????????*@      
+        </table>
+
+            @*</div>*@
+
+
+    </div>
+
+
+

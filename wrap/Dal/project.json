@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+  "frameworks": {
+    "net452": {
+      "wrappedProject": "../../Dal/Dal.csproj",
+      "bin": {
+        "assembly": "../../Dal/obj/{configuration}/Dal.dll",
+        "pdb": "../../Dal/obj/{configuration}/Dal.pdb"
+      },
+      "dependencies": {
+        "Models": "1.0.0-*",
+        "EntityFramework": "1.0.0-*",
+        "EntityFramework.SqlServer": "1.0.0-*"
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+C:\MVCFROMLAB25TOLAB27START\MVCHelloWorld2\Models\bin\Debug\Models.dll
+C:\MVCFROMLAB25TOLAB27START\MVCHelloWorld2\Models\bin\Debug\Models.pdb
+C:\MVCFROMLAB25TOLAB27START\MVCHelloWorld2\Models\obj\Debug\Models.dll
+C:\MVCFROMLAB25TOLAB27START\MVCHelloWorld2\Models\obj\Debug\Models.pdb
+C:\MVCFROMLAB25TOLAB27START\MVCHelloWorld2\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\.net4.51MVCLAB28CoreDeCouple\Models\bin\Debug\Models.dll
+C:\.net4.51MVCLAB28CoreDeCouple\Models\bin\Debug\Models.pdb
+C:\.net4.51MVCLAB28CoreDeCouple\Models\obj\Debug\Models.dll
+C:\.net4.51MVCLAB28CoreDeCouple\Models\obj\Debug\Models.pdb
+C:\MVC...net4.51MVCLAB30SPA..ANG\Models\bin\Debug\Models.dll
+C:\MVC...net4.51MVCLAB30SPA..ANG\Models\bin\Debug\Models.pdb
+C:\MVC...net4.51MVCLAB30SPA..ANG\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+C:\MVC...net4.51MVCLAB30SPA..ANG\Models\obj\Debug\Models.dll
+C:\MVC...net4.51MVCLAB30SPA..ANG\Models\obj\Debug\Models.pdb

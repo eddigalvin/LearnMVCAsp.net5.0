@@ -1,0 +1,27 @@
+﻿@model MVCHelloWorld2.ViewModel.CustomerViewModel
+@using MVCHelloWorld2.Models;
+<table>
+    <tr>
+        <td>Customer Code</td>
+        <td>Customer Name</td>
+    </tr>
+    @foreach (Customer o in Model.customers)
+    {
+        <tr>
+            <td>@o.CustomerCode</td>
+            <td>@o.CustomerName</td>
+        </tr>
+    }
+</table> 
+
+@*  //Comment this out for lab 13 ajax as this is server side processing for data display
+    //we want to use javascript and jquery on client side to process data while
+    //emitting the customer collection in the form of JSON and 
+    //implementing comms using async tchnlgy AJAX.
+    @{
+    WebGrid obj = new WebGrid(Model.customers);
+}
+@obj.GetHtml(); *@
+
+
+

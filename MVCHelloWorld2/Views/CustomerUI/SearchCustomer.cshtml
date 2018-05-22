@@ -1,0 +1,41 @@
+﻿@model MVCHelloWorld2.ViewModel.CustomerViewModel
+@using Models;
+@{
+    Layout = null;
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/CustomerViewModelAngular.js"></script>
+<script>
+    //app
+    var app = angular.module("myApp", []);  //creating app
+    //controller
+    app.controller('CustomerViewModel', CustomerViewModel);
+    //registering the ViewModel object in the controller
+</script>    
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SearchCustomer</title>
+</head>
+<body ng-app="myApp">
+    <div ng-controller="CustomerViewModel">
+        @*<form  action="SearchCustomer" method="post"*@> 
+            Enter Customer Name :- <input id="CustomerName" type="text" ng-model ="Customer.CustomerName" 
+                                          name ="customer.CustomerName"@*"txtCustomerName"*@ @*"Text1"*@  />
+                                          
+            <br />
+            <input id="Submit1" type="button" value="Search Customer" ng-click="LoadByName()"
+                   style="background-color: {{Customer.CustomerAmountColor}}" /><br>
+      Customer Code {{Customer.CustomerCode}} <br> Customer Name {{Customer.CustomerName}} 
+          @* </form>*@
+            @Html.Partial("DisplayCustomer", Model)
+        </div>
+        <br />
+    @* @Html.Partial("DisplayCustomer", Model)//////THIS line is moved up inside div tag
+        with angular controller so model generatd exists in/as anglr class/fn "CustomerViewModel"...
+        ... TRICKY!!!! .....NOTE IS THIS RELATED WITH DEPENDENCY INJECTION????????????*@
+
+</body>
+</html>

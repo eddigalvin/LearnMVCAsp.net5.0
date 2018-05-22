@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null; 
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyomePage</title>
+</head>
+<body>
+    <div> 
+
+        
+       @{ <a href="/CustomerUI/EnterCustomer">ENTER cUSTOMER...</a>}<br /><br />
+        @{ <a href="/CustomerUI/EnterSearch">ENTER sEARCH...</a>}<br />
+        @{ <a href="/Customer/Submit">SUBMIT cUSTOMERS...</a>}<br />
+        @{ <a href="/Customer/GetCustomers">SHOW ALL cUSTOMERS...</a>}<br />
+
+       @* @{ var DTime=ViewData["CurrentDateTime"]; } *@
+      @{ var MyMsg = "HelloWorld.....HelloAgain";}
+   @MyMsg 
+        @{var DT = ViewBag.CurrentDateTime;}
+    <p>@DT</p>  
+    </div>
+</body>
+</html>
